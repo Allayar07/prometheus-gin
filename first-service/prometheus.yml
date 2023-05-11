@@ -29,4 +29,4 @@ scrape_configs:
     # scheme defaults to 'http'.
     # - targets: ['host.docker.internal:8082']
     static_configs:
-      - targets: ['service:9911']
+      - targets: ['host.docker.internal:9911']
