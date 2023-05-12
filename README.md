@@ -11,6 +11,7 @@ git clone git@github.com:Allayar07/prometheus-gin.git
 first check your directory. Are you in prometheus-gin directory? If you aren't in directory, you must enter folder prometheus-gin.(Use this command ``` cd prometheus-gin```)
 # STEP 2:
 Use ```docker compose up``` command for running prometheus and app!
+# For request:
 then do request this endpoint from postman, insomnia or browser(Note: METHOD "GET"): http://localhost:8079/say
 # See result:
 Do request this url for observe metrics: http://localhost:9911/metrics.
