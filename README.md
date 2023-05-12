@@ -15,4 +15,4 @@ Use ```docker compose up``` command for running prometheus and app!
 then do request this endpoint from postman, insomnia or browser(Note: METHOD "GET"): http://localhost:8079/say
 # See result:
 Do request this url for observe metrics: http://localhost:9911/metrics.
-See prometheus UI in this url: http://localhost:19090/
+* See prometheus UI in this url: http://localhost:19090/
