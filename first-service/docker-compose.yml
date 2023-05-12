@@ -6,6 +6,16 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "19090:9090"
+  database:
+    image: postgres:14.1-alpine
+    container_name: practice-db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password0701
+      - POSTGRES_DB=practice
+    ports:
+      - '5432:5432/tcp'
 
   service:
     build: .
