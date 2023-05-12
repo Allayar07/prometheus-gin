@@ -7,8 +7,9 @@ services:
     ports:
       - "19090:9090"
 
-#  service:
-#    build: .
-#    container_name: service
-#    ports:
-#        - '8079:8079'
+  service:
+    build: .
+    container_name: practice_server
+    ports:
+        - '8079:8079'
+        - '9911:9911'
