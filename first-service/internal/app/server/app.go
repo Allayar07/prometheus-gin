@@ -20,7 +20,7 @@ func Init(port string) {
 
 	srv := new(Server)
 
-	if err := srv.Run(":"+port, handlers.InitRoutes()); err != nil {
+	if err = srv.Run(":"+port, handlers.InitRoutes()); err != nil {
 		log.Fatalln(err)
 	}
 
