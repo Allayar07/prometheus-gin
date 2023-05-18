@@ -30,3 +30,4 @@ scrape_configs:
     # - targets: ['host.docker.internal:9911']
     static_configs:
       - targets: ['practice_server:9911']
+#      - targets: ['host.docker.internal:9911']

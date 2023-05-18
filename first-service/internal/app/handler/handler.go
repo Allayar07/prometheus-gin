@@ -27,16 +27,16 @@ type Metric struct {
 	Args            []string
 }
 
-var reqSummary = &Metric{
-	ID:          "reqCnt",
-	Name:        "requests_total",
-	Description: "the number of HTTP requests processed",
-	Type:        "counter_vec",
-	Args:        []string{"status"},
+var reqHistogram = &Metric{
+	ID:          "reqHist",
+	Name:        "requests_histogram_info",
+	Description: "the latency of HTTP requests processed",
+	Type:        "histogram_vec",
+	Args:        []string{"URL", "status"},
 }
 
 type Prometheus struct {
-	reqSummary    *prometheus.SummaryVec
+	reqHistogram  *prometheus.HistogramVec
 	router        *gin.Engine
 	listenAddress string
 	Metric        *Metric
@@ -49,13 +49,12 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	p.use(app)
 	app.POST("/create", h.Create)
 	app.GET("/say", h.SaySomething)
-	//app.GET("/metrics", gin.WrapH(promhttp.Handler()))
 	return app
 }
 
 func newPrometheus(subsystem string) *Prometheus {
 	p := &Prometheus{
-		Metric:        reqSummary,
+		Metric:        reqHistogram,
 		MetricsPath:   "/metrics",
 		listenAddress: ":9911",
 	}
@@ -65,23 +64,23 @@ func newPrometheus(subsystem string) *Prometheus {
 }
 
 func (p *Prometheus) registerMetrics(subsystem string) {
-	metric := prometheus.NewSummaryVec(
-		prometheus.SummaryOpts{
-			Namespace:  "services",
-			Subsystem:  subsystem,
-			Name:       "request",
-			Objectives: map[float64]float64{0.5: 0.05, 0.9: 0.01, 0.99: 0.001},
+	metric := prometheus.NewHistogramVec(
+		prometheus.HistogramOpts{
+			Namespace: "services",
+			Name:      "hbrms_histogram",
+			Help:      "hbrms_histogram",
+			Buckets:   prometheus.ExponentialBuckets(1, 1.3, 15), //50*1.3,15times
+			//Buckets: []float64{0.00001, 0.003, 0.05, 0.7, 1, 1.3, 1.5, 2},
 		},
-		reqSummary.Args,
+		reqHistogram.Args,
 	)
 	if err := prometheus.Register(metric); err != nil {
-		logrus.Infof("%s could not be registered: %s", reqSummary, err)
+		logrus.Infof("%s could not be registered: %s", reqHistogram, err)
 	} else {
-		logrus.Infof("%s registered.", reqSummary)
+		logrus.Infof("%s registered.", reqHistogram)
 	}
-	p.reqSummary = metric
-
-	reqSummary.MetricCollector = metric
+	p.reqHistogram = metric
+	reqHistogram.MetricCollector = metric
 }
 
 func (p *Prometheus) use(e *gin.Engine) {
@@ -100,7 +99,7 @@ func (p *Prometheus) handlerFunc() gin.HandlerFunc {
 
 		status := strconv.Itoa(c.Writer.Status())
 		finished := time.Since(start).Seconds()
-		p.reqSummary.WithLabelValues(status).Observe(finished)
+		p.reqHistogram.WithLabelValues(c.Request.Host+c.Request.URL.String(), status).Observe(finished)
 	}
 }
 
