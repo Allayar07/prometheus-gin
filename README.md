@@ -17,12 +17,12 @@ then do request this endpoint from postman, insomnia or browser(Note: METHOD "GE
 Do request this url for observe metrics: http://localhost:9911/metrics.
 * See prometheus UI in this url: http://localhost:19090/
 
-[//]: # (# Grafana configuration:)
+# Grafana configuration:
 
-[//]: # (* import node-exporter's dashboard its id ```1860```)
+* import node-exporter's dashboard its id ```1860```
 
-[//]: # (* import cadvisor's dashboard its id ```14282```)
+* import cadvisor's dashboard its id ```14282```
 
-[//]: # (* ![img.png]&#40;img.png&#41;)
+* ![img.png](img.png)
 
-[//]: # (* write ids and click ```load``` and then select prometheus and then click ```import```)
+* write ids and click ```load``` and then select prometheus and then click ```import```
