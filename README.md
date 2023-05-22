@@ -23,6 +23,6 @@ Do request this url for observe metrics: http://localhost:9911/metrics.
 
 * import cadvisor's dashboard its id ```14282```
 
-* ![img.png](img.png)
+[//]: # (* ![img.png]&#40;img.png&#41;)
 
 * write ids and click ```load``` and then select prometheus and then click ```import```
