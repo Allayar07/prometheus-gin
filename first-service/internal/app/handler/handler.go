@@ -67,10 +67,10 @@ func (p *Prometheus) registerMetrics(subsystem string) {
 	metric := prometheus.NewHistogramVec(
 		prometheus.HistogramOpts{
 			Namespace: "services",
-			Name:      "hbrms_histogram",
-			Help:      "hbrms_histogram",
-			Buckets:   prometheus.ExponentialBuckets(1, 1.3, 15), //50*1.3,15times
-			//Buckets: []float64{0.00001, 0.003, 0.05, 0.7, 1, 1.3, 1.5, 2},
+			Name:      "request_duration_second",
+			Help:      "Duration of the request",
+			//Buckets:   prometheus.ExponentialBuckets(1, 1.3, 15), //50*1.3,15times
+			Buckets: []float64{0.1, 0.15, 0.2, 0.25, 0.3},
 		},
 		reqHistogram.Args,
 	)

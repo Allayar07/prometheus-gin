@@ -2,23 +2,23 @@ version: "3.8"
 #https://github:
 #  com/vegasbrianc/prometheus/tree/master/alertmanager:https://github.com/vegasbrianc/prometheus/tree/master/alertmanager
 services:
-#  database:
-#    image: postgres:14.1-alpine
-#    container_name: practice-db
-#    restart: always
-#    environment:
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=password0701
-#      - POSTGRES_DB=practice
-#    ports:
-#      - '5432:5432/tcp'
-#
-#  service:
-#    build: .
-#    container_name: practice_server
-#    ports:
-#      - '8079:8079'
-#      - '9911:9911'
+  database:
+    image: postgres:14.1-alpine
+    container_name: practice-db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password0701
+      - POSTGRES_DB=practice
+    ports:
+      - '5432:5432/tcp'
+
+  service:
+    build: .
+    container_name: practice_server
+    ports:
+      - '8079:8079'
+      - '9911:9911'
 
   prometheus:
     image: prom/prometheus:latest
