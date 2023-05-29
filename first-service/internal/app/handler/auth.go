@@ -4,6 +4,7 @@ import (
 	"gin_prometheus/internal/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"time"
 )
 
 func (h *Handler) Create(c *gin.Context) {
@@ -27,5 +28,15 @@ func (h *Handler) SaySomething(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, err)
 		return
 	}
+	time.Sleep(time.Millisecond * 200)
 
+}
+
+func (h *Handler) JustDoIt(c *gin.Context) {
+	_, err := c.Writer.Write([]byte("JUST DO IT!!!)"))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, err)
+		return
+	}
+	//time.Sleep(time.Millisecond * 150)
 }

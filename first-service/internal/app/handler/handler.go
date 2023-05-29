@@ -49,6 +49,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	p.use(app)
 	app.POST("/create", h.Create)
 	app.GET("/say", h.SaySomething)
+	app.GET("/just", h.JustDoIt)
 	return app
 }
 
