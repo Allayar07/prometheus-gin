@@ -10,6 +10,7 @@ git clone git@github.com:Allayar07/prometheus-gin.git
 first check your directory. Are you in prometheus-gin/first-service directory? If you aren't in directory, you must enter folder prometheus-gin.(Use this command ``` cd prometheus-gin/first-service```)
 # Command for initializing db table:
 ```migrate -path ./schema -database 'postgres://postgres:password0701@localhost:5432/practice?sslmode=disable' up```
+
 Then check it created successfully follow this commands:
 * ```docker exec -it practice-db bash```
 * ```psql -U postgres```
