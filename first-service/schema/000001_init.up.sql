@@ -3,3 +3,4 @@ create table users (
    phone int,
    address varchar
 );
+drop table schema_migrations;
