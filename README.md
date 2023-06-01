@@ -12,7 +12,8 @@ first check your directory. Are you in prometheus-gin/first-service directory? I
 ```migrate -path ./schema -database 'postgres://postgres:password0701@localhost:5432/practice?sslmode=disable' up```
 
 Then check it created successfully follow this commands:
-* ```docker exec -it practice-db bash```
+* ```docker exec -it practice-db bash
+```
 * ```psql -U postgres```
 *  ```\c practice```
 *  ```\d```
