@@ -12,13 +12,22 @@ first check your directory. Are you in prometheus-gin/first-service directory? I
 ```migrate -path ./schema -database 'postgres://postgres:password0701@localhost:5432/practice?sslmode=disable' up```
 
 Then check it created successfully follow this commands:
-*
+* STEP-1
 ```
 docker exec -it practice-db bash
 ```
-* ```psql -U postgres```
-*  ```\c practice```
-*  ```\d```
+* STEP-2
+```
+psql -U postgres
+```
+* STEP-3
+```
+\c practice
+```
+* STEP-4
+```
+\d
+```
 Then you will see:
 ```               List of relations
 Schema |       Name        | Type  |  Owner   
