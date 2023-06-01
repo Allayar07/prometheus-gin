@@ -12,7 +12,11 @@ services:
       - POSTGRES_DB=practice
     ports:
       - '5432:5432/tcp'
-
+  cache:
+    image: redis:7.0-alpine
+    container_name: redis_container
+    ports:
+      - "6379:6379"
   service:
     build: .
     container_name: practice_server
@@ -49,6 +53,15 @@ services:
     restart: unless-stopped
     volumes:
       - '/:/host:ro'
+  redis-exporter:
+    image: oliver006/redis_exporter
+    container_name: cache_exporter
+    ports:
+      - '9121:9121'
+    restart: unless-stopped
+    environment:
+      REDIS_ADDR: "redis_container:6379"
+      REDIS_USER: null
 
   postgres_exporter:
     image: wrouesnel/postgres_exporter:latest
