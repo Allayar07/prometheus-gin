@@ -56,3 +56,14 @@ Do request this url for observe metrics: http://localhost:9911/metrics.
 [//]: # (* ![img.png]&#40;img.png&#41;)
 
 * write ids and click ```load``` and then select prometheus and then click ```import```
+
+
+[//]: # (//slack)
+
+[//]: # (api_url: "https://hooks.slack.com/services/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")
+
+[//]: # (//telegram)
+
+[//]: # (bot_token: '5693854166:AAHgrDoo-snILBdMF9iZoBJ8GFQ6c6K5t94')
+
+[//]: # (chat_id: 5775515634)
